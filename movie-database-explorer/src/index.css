@@ -1,0 +1,25 @@
+/*Flexbox ve CSS Grid ayarlarımızı buraya yazacağız.*/
+/* src/index.css */
+:root {
+  --bg-color: #121212;
+  --text-color: #ffffff;
+  --primary-color: #e50914; /* Film temasına uygun bir kırmızı */
+  --secondary-bg: #1f1f1f;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}

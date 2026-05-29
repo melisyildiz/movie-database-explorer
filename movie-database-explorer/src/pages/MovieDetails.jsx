@@ -1,0 +1,119 @@
+import { useState, useEffect } from 'react';
+import { useParams, Link } from 'react-router-dom';
+import { fetchMovieDetails } from '../api/tmdb';
+
+export default function MovieDetails() {
+  const { id } = useParams(); 
+  const [movie, setMovie] = useState(null);
+  const [loading, setLoading] = useState(true);
+  
+  // YENİ: Filmin listede olup olmadığını tuttuğumuz state
+  const [inWatchlist, setInWatchlist] = useState(false);
+
+  useEffect(() => {
+    const getDetails = async () => {
+      const details = await fetchMovieDetails(id);
+      setMovie(details);
+      setLoading(false);
+
+      // YENİ: Film detayları geldiğinde, localStorage'ı kontrol et
+      if (details) {
+        const currentWatchlist = JSON.parse(localStorage.getItem('watchlist')) || [];
+        // Eğer bu filmin ID'si listedeki herhangi bir filmin ID'siyle eşleşiyorsa true döner
+        const isAdded = currentWatchlist.some((item) => item.id === details.id);
+        setInWatchlist(isAdded);
+      }
+    };
+
+    getDetails();
+  }, [id]);
+
+  // YENİ: Ekleme ve çıkarma işlemini tek fonksiyonda birleştirdik
+  const toggleWatchlist = () => {
+    const currentWatchlist = JSON.parse(localStorage.getItem('watchlist')) || [];
+
+    if (inWatchlist) {
+      // Eğer listedeyse -> Çıkar
+      const updatedList = currentWatchlist.filter((item) => item.id !== movie.id);
+      localStorage.setItem('watchlist', JSON.stringify(updatedList));
+      setInWatchlist(false); // Butonu anında değiştir
+    } else {
+      // Eğer listede değilse -> Ekle
+      const updatedList = [...currentWatchlist, movie];
+      localStorage.setItem('watchlist', JSON.stringify(updatedList));
+      setInWatchlist(true); // Butonu anında değiştir
+    }
+  };
+
+  if (loading) {
+    return <h2 style={{ textAlign: 'center', marginTop: '50px' }}>Loading details...</h2>;
+  }
+
+  if (!movie) {
+    return <h2 style={{ textAlign: 'center', marginTop: '50px' }}>Movie not found!</h2>;
+  }
+
+  const director = movie.credits?.crew?.find(member => member.job === 'Director');
+
+  const imageUrl = movie.poster_path 
+    ? `https://image.tmdb.org/t/p/w500${movie.poster_path}` 
+    : 'https://via.placeholder.com/500x750?text=No+Poster';
+
+  return (
+    <section className="details-container">
+      <div className="details-poster">
+        <img src={imageUrl} alt={movie.title} />
+      </div>
+      <div className="details-info">
+        <h2>{movie.title} <span className="release-year">({movie.release_date?.substring(0, 4)})</span></h2>
+        <p className="tagline"><em>{movie.tagline}</em></p>
+        
+        <div className="rating-genres">
+          <span className="rating-badge">Rating: {movie.vote_average?.toFixed(1)} / 10</span>
+          <span className="genres">
+            {movie.genres?.map(genre => genre.name).join(', ')}
+          </span>
+        </div>
+
+        <div className="extra-info">
+          <p><strong>Director:</strong> {director ? director.name : 'Unknown'}</p>
+          <p><strong>Runtime:</strong> {movie.runtime} minutes</p>
+          <p><strong>Status:</strong> {movie.status}</p>
+          {movie.budget > 0 && <p><strong>Budget:</strong> ${movie.budget.toLocaleString()}</p>}
+          {movie.revenue > 0 && <p><strong>Revenue:</strong> ${movie.revenue.toLocaleString()}</p>}
+        </div>
+
+        <h3>Overview</h3>
+        <p className="overview-text">{movie.overview}</p>
+        
+        <h3>Top Cast</h3>
+        <div className="cast-container">
+          {movie.credits?.cast?.slice(0, 10).map((actor) => (
+            <div key={actor.id} className="cast-card">
+              <img 
+                src={actor.profile_path 
+                  ? `https://image.tmdb.org/t/p/w200${actor.profile_path}` 
+                  : 'https://via.placeholder.com/200x300?text=No+Photo'
+                } 
+                alt={actor.name} 
+                loading="lazy"
+              />
+              <p className="actor-name">{actor.name}</p>
+              <p className="character-name">{actor.character}</p>
+            </div>
+          ))}
+        </div>
+        
+        {/* YENİ: State'e göre dinamik olarak sınıf ve metin değiştiren buton */}
+        <button 
+          onClick={toggleWatchlist} 
+          className={`watchlist-btn ${inWatchlist ? 'remove-mode' : ''}`}
+        >
+          {inWatchlist ? '- Remove from Watchlist' : '+ Add to Watchlist'}
+        </button>
+
+        <Link to="/" className="back-btn">← Back to Popular Movies</Link>
+      </div>
+    </section>
+  );
+}
