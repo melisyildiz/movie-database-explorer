@@ -7,7 +7,7 @@ export default function MovieDetails() {
   const [movie, setMovie] = useState(null);
   const [loading, setLoading] = useState(true);
   
-  // YENİ: Filmin listede olup olmadığını tuttuğumuz state
+
   const [inWatchlist, setInWatchlist] = useState(false);
 
   useEffect(() => {
@@ -16,10 +16,10 @@ export default function MovieDetails() {
       setMovie(details);
       setLoading(false);
 
-      // YENİ: Film detayları geldiğinde, localStorage'ı kontrol et
+      
       if (details) {
         const currentWatchlist = JSON.parse(localStorage.getItem('watchlist')) || [];
-        // Eğer bu filmin ID'si listedeki herhangi bir filmin ID'siyle eşleşiyorsa true döner
+        
         const isAdded = currentWatchlist.some((item) => item.id === details.id);
         setInWatchlist(isAdded);
       }
@@ -28,20 +28,20 @@ export default function MovieDetails() {
     getDetails();
   }, [id]);
 
-  // YENİ: Ekleme ve çıkarma işlemini tek fonksiyonda birleştirdik
+
   const toggleWatchlist = () => {
     const currentWatchlist = JSON.parse(localStorage.getItem('watchlist')) || [];
 
     if (inWatchlist) {
-      // Eğer listedeyse -> Çıkar
+  
       const updatedList = currentWatchlist.filter((item) => item.id !== movie.id);
       localStorage.setItem('watchlist', JSON.stringify(updatedList));
-      setInWatchlist(false); // Butonu anında değiştir
+      setInWatchlist(false); 
     } else {
-      // Eğer listede değilse -> Ekle
+      
       const updatedList = [...currentWatchlist, movie];
       localStorage.setItem('watchlist', JSON.stringify(updatedList));
-      setInWatchlist(true); // Butonu anında değiştir
+      setInWatchlist(true); 
     }
   };
 
@@ -104,7 +104,7 @@ export default function MovieDetails() {
           ))}
         </div>
         
-        {/* YENİ: State'e göre dinamik olarak sınıf ve metin değiştiren buton */}
+        {}
         <button 
           onClick={toggleWatchlist} 
           className={`watchlist-btn ${inWatchlist ? 'remove-mode' : ''}`}

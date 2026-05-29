@@ -10,12 +10,12 @@ export default function Watchlist() {
     setWatchlist(savedMovies);
   }, []);
 
-  // YENİ EKLENEN KISIM: Film silme fonksiyonu
+ 
   const removeFromWatchlist = (id) => {
-    // Tıklanan ID dışındaki tüm filmleri filtreleyip yeni bir liste yapıyoruz
+    
     const updatedList = watchlist.filter((movie) => movie.id !== id);
     
-    // Hem ekrandaki state'i hem de tarayıcı hafızasını (localStorage) güncelliyoruz
+  
     setWatchlist(updatedList);
     localStorage.setItem('watchlist', JSON.stringify(updatedList));
   };
@@ -33,7 +33,7 @@ export default function Watchlist() {
             <MovieCard 
               key={movie.id} 
               movie={movie} 
-              onRemove={removeFromWatchlist} // Fonksiyonu karta prop olarak gönderiyoruz
+              onRemove={removeFromWatchlist} 
             />
           ))}
         </div>

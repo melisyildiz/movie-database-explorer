@@ -6,14 +6,14 @@ import MovieCard from '../components/MovieCard';
 export default function Home() {
   const [movies, setMovies] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [page, setPage] = useState(1); // Kaçıncı sayfada olduğumuzu tutan yepyeni state
+  const [page, setPage] = useState(1); 
 
   useEffect(() => {
     const getMovies = async () => {
-      // API'ye mevcut sayfa numarasını gönderiyoruz
+   
       const popularMovies = await fetchPopularMovies(page);
       
-      // Eğer 1. sayfadaysak filmleri baştan yükle, değilse eskilerin üzerine ekle (Spread operator)
+     
       if (page === 1) {
         setMovies(popularMovies);
       } else {
@@ -24,14 +24,14 @@ export default function Home() {
     };
 
     getMovies();
-  }, [page]); // Bu useEffect artık "page" değeri her değiştiğinde tekrar çalışacak!
+  }, [page]); 
 
-  // Butona tıklandığında sayfa numarasını 1 artırır
+
   const loadMore = () => {
     setPage((prevPage) => prevPage + 1);
   };
 
-  // Sadece ilk yüklemede tam ekran "Loading" göster, sonraki sayfalarda gösterme
+
   if (loading && page === 1) {
     return <h2 style={{ textAlign: 'center', marginTop: '50px' }}>Loading movies...</h2>;
   }
@@ -46,7 +46,7 @@ export default function Home() {
         ))}
       </div>
 
-      {/* Daha Fazla Yükle Butonu */}
+      {}
       <div style={{ textAlign: 'center', marginTop: '3rem', marginBottom: '2rem' }}>
         <button 
           onClick={loadMore} 

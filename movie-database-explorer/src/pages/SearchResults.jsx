@@ -18,7 +18,7 @@ export default function SearchResults() {
     };
 
     getSearchResults();
-  }, [query]); // Query değiştiğinde useEffect tekrar çalışır
+  }, [query]); 
 
   if (loading) {
     return <h2 style={{ textAlign: 'center', marginTop: '50px' }}>Searching for "{query}"...</h2>;

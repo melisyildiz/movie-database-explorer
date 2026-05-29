@@ -1,15 +1,15 @@
 // src/components/Navbar.jsx
 import { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import useDebounce from '../hooks/useDebounce'; // Yazdığımız Hook'u içeri aktarıyoruz
+import useDebounce from '../hooks/useDebounce'; 
 
 export default function Navbar() {
   const [searchTerm, setSearchTerm] = useState('');
-  // Kullanıcı yazmayı bıraktıktan 500 milisaniye (yarım saniye) sonra bu değer güncellenir
+ 
   const debouncedSearchTerm = useDebounce(searchTerm, 500); 
   const navigate = useNavigate();
 
-  // Debounce edilmiş değer her değiştiğinde otomatik yönlendirme yapar
+
   useEffect(() => {
     if (debouncedSearchTerm.trim()) {
       navigate(`/search/${debouncedSearchTerm}`);
@@ -18,7 +18,7 @@ export default function Navbar() {
 
   const handleSearch = (e) => {
     e.preventDefault();
-    // Enter'a basıldığında da anında arama yapması için yedek güvenlik (prevent default)
+  
     if (searchTerm.trim()) {
       navigate(`/search/${searchTerm}`);
     }

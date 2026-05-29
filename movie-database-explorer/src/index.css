@@ -1,9 +1,9 @@
-/*Flexbox ve CSS Grid ayarlarımızı buraya yazacağız.*/
+/*Flexbox ve CSS Grid */
 /* src/index.css */
 :root {
   --bg-color: #121212;
   --text-color: #ffffff;
-  --primary-color: #e50914; /* Film temasına uygun bir kırmızı */
+  --primary-color: #e50914; 
   --secondary-bg: #1f1f1f;
 }
 

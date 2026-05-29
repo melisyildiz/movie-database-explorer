@@ -4,7 +4,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Home from './pages/Home';
 import MovieDetails from './pages/MovieDetails';
-import SearchResults from './pages/SearchResults'; // Yeni sayfamızı import ettik
+import SearchResults from './pages/SearchResults'; 
 import './App.css';
 
 function App() {
@@ -18,7 +18,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/movie/:id" element={<MovieDetails />} />
-            <Route path="/search/:query" element={<SearchResults />} /> {/* Yeni Rota */}
+            <Route path="/search/:query" element={<SearchResults />} /> {}
             <Route path="/watchlist" element={<Watchlist />} />
           </Routes>
         </main>

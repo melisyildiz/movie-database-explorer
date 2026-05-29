@@ -1,7 +1,7 @@
 // src/components/MovieCard.jsx
 import { Link } from 'react-router-dom';
 
-// onRemove prop'unu ekledik
+
 export default function MovieCard({ movie, onRemove }) {
   const imageUrl = movie.poster_path 
     ? `https://image.tmdb.org/t/p/w500${movie.poster_path}` 
@@ -21,7 +21,7 @@ export default function MovieCard({ movie, onRemove }) {
         <p>{movie.overview}</p>
         <Link to={`/movie/${movie.id}`} className="details-btn">View Details</Link>
         
-        {/* YENİ EKLENEN KISIM: Sadece Watchlist sayfasındayken görünecek silme butonu */}
+        {}
         {onRemove && (
           <button onClick={() => onRemove(movie.id)} className="remove-btn">
             Remove from Watchlist
