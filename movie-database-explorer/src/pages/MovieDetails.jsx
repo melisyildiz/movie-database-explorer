@@ -6,9 +6,10 @@ export default function MovieDetails() {
   const { id } = useParams(); 
   const [movie, setMovie] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [inWatchlist, setInWatchlist] = useState(false);
   
 
-  const [inWatchlist, setInWatchlist] = useState(false);
+  const [showTrailer, setShowTrailer] = useState(false);
 
   useEffect(() => {
     const getDetails = async () => {
@@ -16,10 +17,8 @@ export default function MovieDetails() {
       setMovie(details);
       setLoading(false);
 
-      
       if (details) {
         const currentWatchlist = JSON.parse(localStorage.getItem('watchlist')) || [];
-        
         const isAdded = currentWatchlist.some((item) => item.id === details.id);
         setInWatchlist(isAdded);
       }
@@ -28,20 +27,17 @@ export default function MovieDetails() {
     getDetails();
   }, [id]);
 
-
   const toggleWatchlist = () => {
     const currentWatchlist = JSON.parse(localStorage.getItem('watchlist')) || [];
 
     if (inWatchlist) {
-  
       const updatedList = currentWatchlist.filter((item) => item.id !== movie.id);
       localStorage.setItem('watchlist', JSON.stringify(updatedList));
-      setInWatchlist(false); 
+      setInWatchlist(false);
     } else {
-      
       const updatedList = [...currentWatchlist, movie];
       localStorage.setItem('watchlist', JSON.stringify(updatedList));
-      setInWatchlist(true); 
+      setInWatchlist(true);
     }
   };
 
@@ -54,6 +50,9 @@ export default function MovieDetails() {
   }
 
   const director = movie.credits?.crew?.find(member => member.job === 'Director');
+  
+ 
+  const trailer = movie.videos?.results?.find(vid => vid.type === 'Trailer' && vid.site === 'YouTube');
 
   const imageUrl = movie.poster_path 
     ? `https://image.tmdb.org/t/p/w500${movie.poster_path}` 
@@ -105,15 +104,44 @@ export default function MovieDetails() {
         </div>
         
         {}
-        <button 
-          onClick={toggleWatchlist} 
-          className={`watchlist-btn ${inWatchlist ? 'remove-mode' : ''}`}
-        >
-          {inWatchlist ? '- Remove from Watchlist' : '+ Add to Watchlist'}
-        </button>
+        <div className="action-buttons">
+          <button 
+            onClick={toggleWatchlist} 
+            className={`watchlist-btn ${inWatchlist ? 'remove-mode' : ''}`}
+          >
+            {inWatchlist ? '- Remove from Watchlist' : '+ Add to Watchlist'}
+          </button>
+
+          {}
+          {trailer && (
+            <button onClick={() => setShowTrailer(true)} className="trailer-btn">
+              ▶ Watch Trailer
+            </button>
+          )}
+        </div>
 
         <Link to="/" className="back-btn">← Back to Popular Movies</Link>
       </div>
+
+      {}
+      {showTrailer && (
+        <div className="modal-overlay" onClick={() => setShowTrailer(false)}>
+          <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+            <button className="close-modal" onClick={() => setShowTrailer(false)}>X</button>
+            <div className="video-responsive">
+              <iframe 
+                width="853" 
+                height="480" 
+                src={`https://www.youtube.com/embed/${trailer.key}?autoplay=1`} 
+                title="YouTube video player" 
+                frameBorder="0" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                allowFullScreen
+              ></iframe>
+            </div>
+          </div>
+        </div>
+      )}
     </section>
   );
 }

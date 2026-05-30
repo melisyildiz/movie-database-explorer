@@ -395,3 +395,82 @@ main {
   background-color: #ff4d4d;
   color: white;
 }
+/* --- FRAGMAN BUTONU --- */
+.action-buttons {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 1rem;
+}
+
+.trailer-btn {
+  background-color: transparent;
+  color: white;
+  border: 2px solid white;
+  padding: 0.75rem 1.5rem;
+  border-radius: 4px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.trailer-btn:hover {
+  background-color: white;
+  color: var(--secondary-color);
+}
+
+/* --- MODAL (AÇILIR PENCERE) STİLLERİ --- */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.85);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  padding: 20px;
+}
+
+.modal-content {
+  background-color: #000;
+  padding: 20px;
+  border-radius: 8px;
+  width: 100%;
+  max-width: 900px;
+  position: relative;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+}
+
+.close-modal {
+  position: absolute;
+  top: -40px;
+  right: 0;
+  background: transparent;
+  color: white;
+  border: none;
+  font-size: 1.5rem;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.close-modal:hover {
+  color: var(--primary-color);
+}
+
+/* YouTube Videosunu Responsive (Ekrana Uyumlu) Yapma */
+.video-responsive {
+  overflow: hidden;
+  padding-bottom: 56.25%; /* 16:9 oranı */
+  position: relative;
+  height: 0;
+}
+
+.video-responsive iframe {
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+}

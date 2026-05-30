@@ -24,7 +24,7 @@ export const fetchPopularMovies = async (page = 1) => {
 export const fetchMovieDetails = async (id) => {
   try {
    
-    const response = await fetch(`${BASE_URL}/movie/${id}?api_key=${API_KEY}&language=en-US&append_to_response=credits`);
+    const response = await fetch(`${BASE_URL}/movie/${id}?api_key=${API_KEY}&language=en-US&append_to_response=credits,videos`);
     if (!response.ok) throw new Error('Network response was not ok');
     const data = await response.json();
     return data;
