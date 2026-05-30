@@ -46,3 +46,42 @@ export const fetchSearchMovies = async (query) => {
     return [];
   }
 };
+
+// Kategorilerin listesini çekmek için
+export const fetchGenres = async () => {
+  try {
+    const response = await fetch(`${BASE_URL}/genre/movie/list?api_key=${API_KEY}&language=en-US`);
+    if (!response.ok) throw new Error('Network response was not ok');
+    const data = await response.json();
+    return data.genres; // { id: 28, name: "Action" } şeklinde bir dizi döner
+  } catch (error) {
+    console.error("Fetch genres error:", error);
+    return [];
+  }
+};
+
+// Belirli bir kategori ID'sine göre filmleri çekmek için
+export const fetchMoviesByGenre = async (genreId, page = 1) => {
+  try {
+    // Burada movie/popular yerine discover/movie kullanıyoruz ve with_genres parametresi ekliyoruz
+    const response = await fetch(`${BASE_URL}/discover/movie?api_key=${API_KEY}&with_genres=${genreId}&language=en-US&page=${page}`);
+    if (!response.ok) throw new Error('Network response was not ok');
+    const data = await response.json();
+    return data.results;
+  } catch (error) {
+    console.error("Fetch movies by genre error:", error);
+    return [];
+  }
+};
+// Benzer filmleri çekmek için
+export const fetchSimilarMovies = async (id) => {
+  try {
+    const response = await fetch(`${BASE_URL}/movie/${id}/similar?api_key=${API_KEY}&language=en-US&page=1`);
+    if (!response.ok) throw new Error('Network response was not ok');
+    const data = await response.json();
+    return data.results;
+  } catch (error) {
+    console.error("Fetch similar movies error:", error);
+    return [];
+  }
+};

@@ -5,10 +5,9 @@ import useDebounce from '../hooks/useDebounce';
 
 export default function Navbar() {
   const [searchTerm, setSearchTerm] = useState('');
- 
+  
   const debouncedSearchTerm = useDebounce(searchTerm, 500); 
   const navigate = useNavigate();
-
 
   useEffect(() => {
     if (debouncedSearchTerm.trim()) {
@@ -30,6 +29,8 @@ export default function Navbar() {
         <h1>
           <Link to="/">Movie Explorer</Link>
         </h1>
+        {/* Kategoriler linki buraya eklendi */}
+        <Link to="/genres" style={{ fontSize: '1.1rem', fontWeight: 'bold' }}>Categories</Link>
         <Link to="/watchlist" style={{ fontSize: '1.1rem', fontWeight: 'bold' }}>My Watchlist</Link>
       </div>
 
