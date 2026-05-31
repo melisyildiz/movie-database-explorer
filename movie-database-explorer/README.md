@@ -14,3 +14,57 @@ The React Compiler is not enabled on this template because of its impact on dev 
 ## Expanding the ESLint configuration
 
 If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+
+#proje hakkında bilgiler
+
+PROJE YAZARI= MELİS YILDIZ
+
+
+* Movie Explorer 
+Movie Explorer, React ve TMDB (The Movie Database) API kullanılarak geliştirilmiş, modern ve interaktif bir film keşif platformudur.
+
+* Öne Çıkan Özellikler
+Dinamik Ambiyans Tasarımı: Filmlerin üzerine geldiğinizde, o filmin renk tonlarını arka plana yansıtan şık ve modern bir ambiyans efekti.
+
+Kişisel İzleme Listesi (Watchlist): Beğendiğiniz filmleri favorilerinize ekleyin.
+
+Gelişmiş Not Sistemi: İzlediğiniz filmler için notlar ekleyin, düzenleyin ve klavye kısayolları (Enter ile kaydet, Shift+Enter ile alt satıra geç) ile konforlu bir deneyim yaşayın.
+
+Kategorize Edilmiş Keşif: Farklı türlerdeki filmleri kolayca listeleyin ve inceleyin.
+
+Responsive Tasarım: Geniş ekranlarda sinematik bir deneyim, mobil cihazlarda ise kullanıcı dostu arayüz.
+
+* Kullanılan Teknolojiler
+React: Kullanıcı arayüzü kütüphanesi.
+
+React Router: Sayfalar arası geçiş yönetimi.
+
+TMDB API: Film verilerinin çekilmesi.
+
+CSS: Modern ve estetik arayüz tasarımı.
+
+* Kurulum ve Çalıştırma
+Projeyi kendi bilgisayarınızda çalıştırmak için şu adımları izleyin:
+
+Projeyi Klonlayın:
+
+Bash
+git clone [https://github.com/melisyildiz/movie-database-explorer]
+cd proje-adi
+
+* Bağımlılıkları Yükleyin:
+
+* Bash
+npm install
+API Anahtarını Tanımlayın:
+
+Proje ana dizininde .env.local adında bir dosya oluşturun.
+
+İçine şu satırı ekleyin:
+
+* Plaintext
+VITE_TMDB_API_KEY=KENDI_TMDB_API_ANAHTARINIZ
+Projeyi Başlatın:
+
+* Bash
+npm run dev
