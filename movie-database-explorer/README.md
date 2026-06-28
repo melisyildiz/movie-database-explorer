@@ -1,70 +1,68 @@
-# React + Vite
-
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
-
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
-
-## React Compiler
-
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
-
-#proje hakkında bilgiler
-
-PROJE YAZARI= MELİS YILDIZ
 
 
-* Movie Explorer 
-Movie Explorer, React ve TMDB (The Movie Database) API kullanılarak geliştirilmiş, modern ve interaktif bir film keşif platformudur.
 
-* Öne Çıkan Özellikler
-Dinamik Ambiyans Tasarımı: Filmlerin üzerine geldiğinizde, o filmin renk tonlarını arka plana yansıtan şık ve modern bir ambiyans efekti.
 
-Kişisel İzleme Listesi (Watchlist): Beğendiğiniz filmleri favorilerinize ekleyin.
+# Project Information
 
-Gelişmiş Not Sistemi: İzlediğiniz filmler için notlar ekleyin, düzenleyin ve klavye kısayolları (Enter ile kaydet, Shift+Enter ile alt satıra geç) ile konforlu bir deneyim yaşayın.
 
-Kategorize Edilmiş Keşif: Farklı türlerdeki filmleri kolayca listeleyin ve inceleyin.
+## Movie Explorer
 
-Responsive Tasarım: Geniş ekranlarda sinematik bir deneyim, mobil cihazlarda ise kullanıcı dostu arayüz.
+**Movie Explorer** is a modern and interactive movie discovery platform developed using **React** and the **The Movie Database (TMDB) API**. The application enables users to explore movies, search dynamically, manage personalized watchlists, and access detailed movie information through an intuitive and responsive user interface.
 
-* Kullanılan Teknolojiler
-React: Kullanıcı arayüzü kütüphanesi.
+## Key Features
 
-React Router: Sayfalar arası geçiş yönetimi.
+* **Dynamic Ambient Design:** When users hover over a movie card, the application's background dynamically adapts to reflect the dominant color palette of the selected movie, creating a visually immersive cinematic experience.
 
-TMDB API: Film verilerinin çekilmesi.
+* **Personal Watchlist:** Users can save their favorite movies to a personalized watchlist for quick and convenient access.
 
-CSS: Modern ve estetik arayüz tasarımı.
+* **Advanced Note-Taking System:** Users can add and edit personal notes for watched movies. The note editor supports keyboard shortcuts, including 
+**Enter** to save notes and **Shift + Enter** to insert a new line, providing a smooth writing experience.
 
-* Kurulum ve Çalıştırma
-Projeyi kendi bilgisayarınızda çalıştırmak için şu adımları izleyin:
+* **Categorized Movie Discovery:** Movies can be browsed and explored by genre, allowing users to easily discover content based on their preferences.
 
-Projeyi Klonlayın:
+* **Responsive Design:** The application delivers a cinematic experience on desktop devices while maintaining a user-friendly interface across tablets and mobile devices.
 
-Bash
-git clone [https://github.com/melisyildiz/movie-database-explorer]
+## Technologies Used
+
+* **React:** JavaScript library for building the user interface.
+
+* **React Router:** Library used for client-side routing and navigation between pages.
+
+* **TMDB API:** Primary data source for retrieving movie information.
+
+* **CSS:** Used to create a modern, responsive, and aesthetically pleasing user interface.
+
+
+## Installation and Execution
+
+To run the project locally, follow these steps:
+
+### Clone the Repository
+
+```bash
+git clone https://github.com/melisyildiz/movie-database-explorer
 cd proje-adi
+```
 
-* Bağımlılıkları Yükleyin:
+### Install Dependencies
 
-* Bash
+```bash
 npm install
-API Anahtarını Tanımlayın:
+```
 
-Proje ana dizininde .env.local adında bir dosya oluşturun.
+### Configure the API Key
 
-İçine şu satırı ekleyin:
+Create a file named **`.env.local`** in the project's root directory and add the following line:
 
-* Plaintext
-VITE_TMDB_API_KEY=KENDI_TMDB_API_ANAHTARINIZ
-Projeyi Başlatın:
+```plaintext
+VITE_TMDB_API_KEY=YOUR_TMDB_API_KEY
+```
 
-* Bash
+### Start the Development Server
+
+```bash
 npm run dev
+```
+
+---
+
